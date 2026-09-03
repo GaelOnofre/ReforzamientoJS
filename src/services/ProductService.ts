@@ -13,12 +13,11 @@ export const obtenerProm = async (): Promise<PrProductos[]> => {
     return {
       nombre: title,
       precio: price,
-      rating: rating,
-      stock: stock
+      rating,
+      stock
     };
   });
 
-  
   return candidatos;
 };
 

@@ -12,12 +12,12 @@ const mostrarResultado = async () => {
        Stock: ${stock}`
     );
   });
+
   const valorTotal = calcularTotal(productosPromo);
 
   console.log(productosPromo);
 
-  console.log('Total: '+ valorTotal + '$');
+  console.log(`Total: $${valorTotal.toFixed(2)}`);
 };
 
 mostrarResultado();
-
