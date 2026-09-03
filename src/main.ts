@@ -1,10 +1,18 @@
-import { obtenerDatos } from './services/ProductService';
+import { 
+  obtenerProductos, 
+  obtenerCandidatosPromo, 
+  calcularValorInventario, 
+  generarReporteDescuentos, 
+  contarPorCategoria 
+} from './services/ProductService';
 
-const mostrarResultado = async () => {
-  const { productosPromo, totalInventarioGeneral } = await obtenerDatos();
+const ejecutar = async () => {
+  const productos = await obtenerProductos();
 
-  productosPromo.forEach((producto) => {
-    const { nombre, precio, rating, stock } = producto;
+ 
+  console.log('=== PRODUCTOS CANDIDATOS PARA PROMOCIÓN ===');
+  const candidatos = obtenerCandidatosPromo(productos);
+  candidatos.forEach(({ nombre, precio, rating, stock }) => {
     console.log(
       `Producto: ${nombre}
        Precio: $${precio} 
@@ -12,10 +20,22 @@ const mostrarResultado = async () => {
        Stock: ${stock}`
     );
   });
+  console.log(candidatos);
 
-  console.log(productosPromo);
+  
+  console.log('\n=== VALOR TOTAL DEL INVENTARIO ===');
+  const totalInventario = calcularValorInventario(productos);
+  console.log(`Valor total del inventario: $${totalInventario.toFixed(2)}`);
 
-  console.log(`Total inventario general: $${totalInventarioGeneral.toFixed(2)}`);
+  
+  console.log('\n=== REPORTE DE PRECIOS CON DESCUENTO ===');
+  const reporteDescuento = generarReporteDescuentos(productos);
+  console.table(reporteDescuento);
+
+  
+  console.log('\n=== PRODUCTOS POR CATEGORÍA ===');
+  const categorias = contarPorCategoria(productos);
+  console.log(categorias);
 };
 
-mostrarResultado();
+ejecutar();
