@@ -1,7 +1,7 @@
-import { obtenerPromociones } from './services/ProductService';
+import { calcularTotal, obtenerProm } from './services/ProductService';
 
 const mostrarResultado = async () => {
-  const productosPromo = await obtenerPromociones();
+  const productosPromo = await obtenerProm();
 
   productosPromo.forEach((producto) => {
     const { nombre, precio, rating, stock } = producto;
@@ -9,9 +9,12 @@ const mostrarResultado = async () => {
       `Producto: ${nombre} | Precio: $${precio} | Rating: ${rating} | Stock: ${stock}`
     );
   });
-
+  const valorTotal = calcularTotal(productosPromo);
 
   console.log(productosPromo);
+
+  console.log('Total: '+ valorTotal + '$');
 };
 
 mostrarResultado();
+

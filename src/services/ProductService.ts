@@ -1,6 +1,6 @@
 import type { RsAPI, PrProductos } from '../models/product';
 
-export const obtenerPromociones = async (): Promise<PrProductos[]> => {
+export const obtenerProm = async (): Promise<PrProductos[]> => {
   const respuesta = await fetch('https://dummyjson.com/products');
   const datos: RsAPI = await respuesta.json();
 
@@ -18,5 +18,12 @@ export const obtenerPromociones = async (): Promise<PrProductos[]> => {
     };
   });
 
+  
   return candidatos;
+};
+
+export const calcularTotal = (productos: PrProductos[]): number => {
+  return productos.reduce((total, { precio, stock }) => {
+    return total + (precio * stock);
+  }, 0);
 };
