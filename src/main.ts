@@ -6,7 +6,10 @@ const mostrarResultado = async () => {
   productosPromo.forEach((producto) => {
     const { nombre, precio, rating, stock } = producto;
     console.log(
-      `Producto: ${nombre} | Precio: $${precio} | Rating: ${rating} | Stock: ${stock}`
+      `Producto: ${nombre}
+       Precio: $${precio} 
+       Rating: ${rating} 
+       Stock: ${stock}`
     );
   });
   const valorTotal = calcularTotal(productosPromo);
