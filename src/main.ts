@@ -1,7 +1,7 @@
-import { calcularTotal, obtenerProm } from './services/ProductService';
+import { obtenerDatos } from './services/ProductService';
 
 const mostrarResultado = async () => {
-  const productosPromo = await obtenerProm();
+  const { productosPromo, totalInventarioGeneral } = await obtenerDatos();
 
   productosPromo.forEach((producto) => {
     const { nombre, precio, rating, stock } = producto;
@@ -13,11 +13,9 @@ const mostrarResultado = async () => {
     );
   });
 
-  const valorTotal = calcularTotal(productosPromo);
-
   console.log(productosPromo);
 
-  console.log(`Total: $${valorTotal.toFixed(2)}`);
+  console.log(`Total inventario general: $${totalInventarioGeneral.toFixed(2)}`);
 };
 
 mostrarResultado();
