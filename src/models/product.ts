@@ -12,7 +12,7 @@ export interface ApiResponse {
   products: Product[];
 }
 
-// Sección A: Promociones
+
 export interface ProductoPromo {
   nombre: string;
   precio: number;
@@ -20,7 +20,7 @@ export interface ProductoPromo {
   stock: number;
 }
 
-// Sección C: Reporte con descuento
+
 export interface ProductoDescuento {
   title: string;
   originalPrice: number;
